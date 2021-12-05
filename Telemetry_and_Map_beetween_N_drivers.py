@@ -7,7 +7,7 @@ It also create a map and show you the fastest secctor of each driver
 """
 
 # the code is based on the course of https://medium.com/@jaspervhat
-# and also to zyxwl2015 who shared his code with me ! thanks again to him !
+# and also to zyxwl2015 who shared her code with me ! thanks again to him !
 
 """
 Needed improvement 
