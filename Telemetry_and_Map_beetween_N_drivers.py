@@ -7,7 +7,7 @@ It also create a map and show you the fastest secctor of each driver
 """
 
 # the code is based on the course of https://medium.com/@jaspervhat
-# and also to zyxwl2015 who shared her code with me ! thanks again to her !
+# and also to zyxwl2015 who shared his code with me ! thanks again to him !
 
 """
 Needed improvement 
@@ -39,12 +39,12 @@ Data input in order to compare all drivers throught the GP
 """
 
 #list of drivers you want to compare (only the first 3 letters of their names)
-drivers=['VER','HAM','NOR']
+drivers=['VER','HAM']
 #drivers=['HAM','VER','PER','BOT','RIC']
 #-> another exemple of driver list
 race_year=2021
 #Name of race or number this year
-race_name=20
+race_name=22
 #race_name='Brasil'
 #-> another exemple of race name
 #you can use SQ for sprint qualification race or R for Race
@@ -53,7 +53,7 @@ type_of_race='R'
 color_map_plt='hot'
 #color_map_plt='ocean'
 #Select the lap you want to visualize - if you want fastest lap, put 0
-Lap_analyse = 0
+Lap_analyse = 58
 #if you want to save the plot put True else put False
 save=True
 
@@ -91,7 +91,7 @@ race = ff1.get_session(race_year, race_name, type_of_race)
 laps = race.load_laps(with_telemetry=True)
 
 # Calculate RaceLapNumber (LapNumber minus 1 since the warmup lap is included in LapNumber)
-laps['RaceLapNumber'] = laps['LapNumber'] - 1
+laps['RaceLapNumber'] = laps['LapNumber'] #- 1
 
 
 max_lap = max(laps['RaceLapNumber'])
@@ -218,8 +218,7 @@ def generate_telemetry_for_map_plot_specific_lap(drivers, laps, Lap_analyse):
         # Since we want to compare distances, we need to collect telemetry lap-by-lap to reset the distance
     
         for lap in laps.pick_driver(driver).iterlaps():
-            #need to investigqte why there a difference of 1 lap
-            if lap[1]['LapNumber']==Lap_analyse+1:
+            if lap[1]['LapNumber']==Lap_analyse:
                 driver_telemetry = lap[1].get_telemetry().add_distance()
                 driver_telemetry['Driver'] = driver
                 driver_telemetry['Lap'] = lap[1]['RaceLapNumber']

@@ -102,7 +102,7 @@ race = ff1.get_session(race_year, race_name, type_of_race)
 laps = race.load_laps(with_telemetry=False)
 
 # Calculate RaceLapNumber (LapNumber minus 1 since the warmup lap is included in LapNumber)
-laps['RaceLapNumber'] = laps['LapNumber'] -1
+laps['RaceLapNumber'] = laps['LapNumber']-1
 laps=laps[laps['RaceLapNumber']!=0]
 
 """
@@ -165,7 +165,7 @@ for driver in Drivers_list:
     data=get_cumulative_time(driver)
     linestyle,color=data_pilot_color[data[0]]
     data=difference_driver_with_ref(data[1])
-    plt.plot(laps_drivers_ref['RaceLapNumber'][0:len(data)],data, label=driver, linestyle=linestyle, color=color, linewidth=line_width)
+    plt.plot(laps_drivers_ref['LapNumber'][0:len(data)],data, label=driver, linestyle=linestyle, color=color, linewidth=line_width)
 
 
 """
@@ -194,7 +194,7 @@ Plot options
 """
 
 #plot from lap 1 to the last lap
-plt.xlim(1,laps_drivers_ref['RaceLapNumber'].tolist()[-1])
+plt.xlim(1,laps_drivers_ref['LapNumber'].tolist()[-1])
 # plt.ylim(-5,30) 
 #-> can be used to restaint the y axes 
 plt.ylabel('Gap (Seconds)', fontsize=label_size)
